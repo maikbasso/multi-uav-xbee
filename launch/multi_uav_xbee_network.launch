@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="droneId" default="0"/>
+    <arg name="serialPort" default="/dev/ttyUSB0"/>
+    <arg name="baud" default="9600"/>
+
+    <node pkg="multi_uav_xbee" name="multi_uav_xbee_node" type="multi_uav_xbee_node" args="_droneId:=$(arg droneId) _serialPort:=$(arg serialPort) _baud:=$(arg baud)" output="screen"/>
+
+</launch>
