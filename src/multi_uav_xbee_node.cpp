@@ -217,7 +217,7 @@ void receiveMessageByXbee(ros::NodeHandle nh){
     setPoseSubscriberMap[droneId] = nh.subscribe(setPositionTopic.str(), 1, setPositionCallback);
   }
 
-  ros::Rate rate(1);
+  // ros::Rate rate(1);
   while(ros::ok()){
 
     try{
@@ -312,7 +312,7 @@ void receiveMessageByXbee(ros::NodeHandle nh){
 
     numberOfNodes = nodes.size();
 
-    rate.sleep();
+    // rate.sleep();
   }
 
   //shutdown all position publishers
