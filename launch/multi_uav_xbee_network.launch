@@ -5,23 +5,23 @@
     <arg name="serialPort" default="/dev/ttyUSB0"/>
     <arg name="baud" default="9600"/>
     <!-- Port et baudrate of the connexion with Pixhawk -->
-   	<arg name="fcu_url" default="/dev/ttyACM0:57600" />
+   	<arg name="fcu_url" default="/dev/ttyS0:57600" />
    	<arg name="recordBag" default="0"/>
 
    	<group ns="$(eval 'uav' + str(arg('droneId')))">
 	    <!-- MAVROS -->
 	    <include file="$(find mavros)/launch/px4.launch">
-			<arg name="fcu_url" value="$(arg fcu_url)"/>
-			<arg name="gcs_url" value=""/>
-			<arg name="tgt_system" value="$(eval 1 + arg('droneId'))"/>
-			<arg name="tgt_component" value="1"/>
-		</include>
+  			<arg name="fcu_url" value="$(arg fcu_url)"/>
+  			<arg name="gcs_url" value=""/>
+  			<arg name="tgt_system" value="$(eval 1 + arg('droneId'))"/>
+  			<arg name="tgt_component" value="1"/>
+  		</include>
 	</group>
 
 	<!-- XBee node -->    
-    <node pkg="multi_uav_xbee" name="multi_uav_xbee_node" type="multi_uav_xbee_node" args="_droneId:=$(arg droneId) _serialPort:=$(arg serialPort) _baud:=$(arg baud)" output="screen"/>
+  <node pkg="multi_uav_xbee" name="multi_uav_xbee_node" type="multi_uav_xbee_node" args="_droneId:=$(arg droneId) _serialPort:=$(arg serialPort) _baud:=$(arg baud)" output="screen"/>
 
-    <!-- BAG record -->
-    <node pkg="rosbag" type="record" name="record" args="-o $(find multi_uav_xbee)/bag/uav$(arg droneId) -a" if="$(eval arg('recordBag') > 0)" />
+  <!-- BAG record -->
+  <node pkg="rosbag" type="record" name="record" args="-o $(find multi_uav_xbee)/bag/uav$(arg droneId) -a" if="$(eval arg('recordBag') > 0)" />
 
 </launch>
