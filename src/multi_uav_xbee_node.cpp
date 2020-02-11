@@ -220,8 +220,13 @@ void receiveMessageByXbee(ros::NodeHandle nh){
   // ros::Rate rate(1);
   while(ros::ok()){
 
+    std::string msgData = serial->readData();
+
+    //std::cout << "Received data: " << msgData << std::endl;
+
     try{
-      multi_uav_xbee::MUXPose msg = parser->deserialize(serial->readData());
+
+      multi_uav_xbee::MUXPose msg = parser->deserialize(msgData);
 
       if(msg.header.message_id == MSG_TYPE_BEACON){
 

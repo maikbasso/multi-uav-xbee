@@ -3,14 +3,13 @@
 
   <arg name="droneId" default="0"/>
   <arg name="serialPort" default="/dev/ttyUSB0"/>
-  <arg name="baud" default="9600"/>
+  <arg name="baud" default="57600"/>
   <!-- Port and baudrate of the connetion with Pixhawk -->
   <!--<arg name="fcu_url" default="/dev/serial0:921600" />-->
   <arg name="fcu_url" default="/dev/serial0:57600" />
   <arg name="recordBag" default="0"/>
-
+  
   <group ns="$(eval 'uav' + str(arg('droneId')))">
-    <!-- MAVROS -->
     <include file="$(find mavros)/launch/px4.launch">
       <arg name="fcu_url" value="$(arg fcu_url)"/>
       <arg name="gcs_url" value=""/>
@@ -18,7 +17,7 @@
       <arg name="tgt_component" value="1"/>
     </include>
   </group>
-
+  
   <!-- XBee node -->    
   <node pkg="multi_uav_xbee" name="multi_uav_xbee_node" type="multi_uav_xbee_node" args="_droneId:=$(arg droneId) _serialPort:=$(arg serialPort) _baud:=$(arg baud)" output="screen"/>
 

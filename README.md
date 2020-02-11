@@ -4,7 +4,7 @@ This packet establishes a network based in position synchronization of multiples
 
 Run on terminal:
 ```sh
-$ roslaunch multi_uav_xbee multi_uav_xbee_network.launch _droneId:=<droneId> _serialPort:=<serialPort> _baud:=<baud>
+$ roslaunch multi_uav_xbee multi_uav_xbee_network.launch droneId:=<droneId> serialPort:=<serialPort> baud:=<baud>
 ```
 
 Default parameters:
